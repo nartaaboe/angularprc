@@ -1,0 +1,10 @@
+<strong>{{order.id}}</strong>
+<p>{{order.status}}</p>
+<div *ngFor="let item of order.orderItems">
+  <p>{{item.product.name}}</p>
+</div>
+<p>Here will be address!</p>
+<p>{{order.payment.paymentMethod}}</p>
+<p>{{order.payment.status}}</p>
+
+

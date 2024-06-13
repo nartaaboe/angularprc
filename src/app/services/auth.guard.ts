@@ -6,10 +6,10 @@ import { Router } from '@angular/router';
 export const authGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
   const router = inject(Router);
-
-  if (authService.getToken()){
+  if(authService.getToken()){
     return true;
-  } else {
+  }
+  else{
     router.navigate(['/login']);
     return false;
   }

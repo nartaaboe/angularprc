@@ -1,3 +1,4 @@
 <div *ngFor="let product of products">
   <p>{{product.name}}</p>
+  <button [routerLink]="['/products', product.id]">view</button>
 </div>

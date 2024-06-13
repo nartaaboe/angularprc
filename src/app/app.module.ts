@@ -11,6 +11,9 @@ import {AuthService} from "./services/auth.service";
 import {HTTP_INTERCEPTORS, provideHttpClient, withFetch} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {AuthInterceptor} from "./services/auth.interceptor";
+import { OrdersComponent } from './components/orders/orders.component';
+import { CartComponent } from './components/cart/cart.component';
+import { OrderDetailComponent } from './components/order-detail/order-detail.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import {AuthInterceptor} from "./services/auth.interceptor";
     LoginComponent,
     SignupComponent,
     ProductsComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    OrdersComponent,
+    CartComponent,
+    OrderDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,5 @@
 <div>
-  <p>{{product.name}}</p>
+  <p>{{ product.name }}</p>
+  <button (click)="addToCart()">Add to Cart</button>
 </div>
+<button [routerLink]="['/cart']">View Cart</button>
