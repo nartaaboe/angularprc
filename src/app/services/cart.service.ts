@@ -26,7 +26,13 @@ export class CartService {
     const userId = localStorage.getItem('userId');
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.put<any>(`${this.BASE_URL}/carts/${userId}/${cartItemId}`, null, {headers});
+    return this.http.put<any>(`${this.BASE_URL}/carts/${userId}/${cartItemId}/increase`, null, {headers});
+  }
+  decreaseQuantity(cartItemId: number): Observable<any>{
+    const userId = localStorage.getItem('userId');
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.put<any>(`${this.BASE_URL}/carts/${userId}/${cartItemId}/decrease`, null, {headers});
   }
   removeFromCart(id: number): Observable<any> {
     const userId = localStorage.getItem('userId');

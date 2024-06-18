@@ -48,7 +48,11 @@ export class CartComponent implements OnInit{
       console.log(response);
     });
   }
-
+  decreaseQuantity(cartItemId: number) {
+    this.cartService.decreaseQuantity(cartItemId).subscribe((response) => {
+      console.log(response);
+    });
+  }
   delete(id: number) {
     this.cartService.removeFromCart(id).subscribe((response) => {
       console.log(response);

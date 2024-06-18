@@ -9,7 +9,8 @@ import { BehaviorSubject } from 'rxjs';
 export class WebSocketService {
   private client: Client;
   private cartUpdates: BehaviorSubject<any> = new BehaviorSubject(null);
-
+  private orderUpdates: BehaviorSubject<any> = new BehaviorSubject(null);
+  private productUpdates: BehaviorSubject<any> = new BehaviorSubject(null);
   constructor() {
     this.client = new Client({
       brokerURL: 'ws://localhost:8080/ws',
@@ -29,6 +30,8 @@ export class WebSocketService {
     this.client.onConnect = (frame) => {
       console.log('Connected: ' + JSON.stringify(frame));
       this.subscribeToCartUpdates();
+      this.subscribeToOrderUpdates();
+      this.subscribeToProductUpdates();
     };
 
     this.client.onStompError = (frame) => {
@@ -45,8 +48,27 @@ export class WebSocketService {
       this.cartUpdates.next(cartItem);
     });
   }
-
   public getCartUpdates() {
     return this.cartUpdates.asObservable();
+  }
+  private subscribeToOrderUpdates(){
+    console.log('Subscribing to order updates');
+    this.client.subscribe('/topic/order', (message) => {
+      const order = JSON.parse(message.body);
+      console.log('Received order update:', order);
+      this.orderUpdates.next(order);
+    })
+  }
+  public getOrderUpdates(){
+    return this.orderUpdates.asObservable();
+  }
+  private subscribeToProductUpdates(){
+    this.client.subscribe('/topic/product', (message) => {
+      const product = JSON.parse(message.body);
+      this.productUpdates.next(product);
+    })
+  }
+  public getProductUpdates(){
+    return this.productUpdates.asObservable();
   }
 }

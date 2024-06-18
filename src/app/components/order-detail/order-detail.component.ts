@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Order} from "../../app.models";
+import {Order, orderStatuses} from "../../app.models";
 import {OrderService} from "../../services/order.service";
 import {ActivatedRoute} from "@angular/router";
 
@@ -10,6 +10,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class OrderDetailComponent implements OnInit{
   order!: Order;
+  oderStatuses = orderStatuses;
   constructor(private orderService: OrderService, private activatedRoute: ActivatedRoute) {
   }
   ngOnInit(): void {
@@ -23,4 +24,9 @@ export class OrderDetailComponent implements OnInit{
       })
     });
   }
+  updateOrderStatus(id: number){
+
+  }
+
+  protected readonly orderStatuses = orderStatuses;
 }

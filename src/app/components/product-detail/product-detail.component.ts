@@ -3,6 +3,8 @@ import {Product} from "../../app.models";
 import {ProductService} from "../../services/product.service";
 import {ActivatedRoute} from "@angular/router";
 import {CartService} from "../../services/cart.service";
+import {Subscription} from "rxjs";
+import {WebSocketService} from "../../services/websocket.service";
 
 @Component({
   selector: 'app-product-detail',
@@ -11,7 +13,11 @@ import {CartService} from "../../services/cart.service";
 })
 export class ProductDetailComponent implements OnInit{
   product!: Product;
-  constructor(private productService: ProductService, private activatedRoute: ActivatedRoute, private cartService: CartService) {
+  productUpdatesSubscription!: Subscription;
+  constructor(private productService: ProductService,
+              private activatedRoute: ActivatedRoute,
+              private cartService: CartService,
+              private webSocketService: WebSocketService) {
   }
   getProduct(): void {
     this.activatedRoute.paramMap.subscribe((params) => {
@@ -23,6 +29,7 @@ export class ProductDetailComponent implements OnInit{
   }
   ngOnInit(): void {
     this.getProduct()
+    this.subscribeToProductUpdates();
   }
   addToCart() {
     this.cartService.addToCart(this.product).subscribe(
@@ -30,5 +37,17 @@ export class ProductDetailComponent implements OnInit{
         console.log(response);
       }
     );
+  }
+  subscribeToProductUpdates() {
+    this.productUpdatesSubscription = this.webSocketService.getProductUpdates().subscribe((product) => {
+      if (product) {
+        if(product.id == this.product.id) {
+          this.product = product;
+        }
+        else{
+          console.log("Error xz!");
+        }
+      }
+    });
   }
 }

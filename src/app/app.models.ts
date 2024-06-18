@@ -82,6 +82,7 @@ export interface UserResponse {
   id: number;
   username: string;
   email: string;
+  role: string;
 }
 
 export interface JwtResponse{
@@ -92,3 +93,58 @@ export interface AuthResponse {
   userResponse: UserResponse;
   jwtResponse: JwtResponse;
 }
+
+
+export const orderStatuses = [
+  {
+    status: 'PENDING',
+  },
+  {
+    status: 'PROCESSING',
+  },
+  {
+    status: 'SHIPPED',
+  },
+  {
+    status: 'DELIVERED',
+  },
+  {
+    status: 'CANCELLED',
+  },
+  {
+    status: 'RETURNED',
+  },
+]
+
+export const paymentMethods = [
+  {
+    method: 'CREDIT_CARD',
+  },
+  {
+    method: 'DEBIT_CARD',
+  },
+  {
+    method: 'PAYPAL',
+  },
+  {
+    method: 'CASH_ON_DELIVERY',
+  },
+  {
+    method: 'BANK_TRANSFER',
+  },
+]
+
+export const paymentStatuses = [
+  {
+    status: 'PENDING',
+  },
+  {
+    status: 'COMPLETED',
+  },
+  {
+    status: 'FAILED',
+  },
+  {
+    status: 'REFUNDED',
+  },
+]

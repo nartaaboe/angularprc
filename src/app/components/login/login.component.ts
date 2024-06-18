@@ -18,7 +18,8 @@ export class LoginComponent{
       (response: AuthResponse) => {
         const token = response.jwtResponse.token
         const userId = response.userResponse.id;
-        this.authService.saveUserData(token, userId);
+        const role = response.userResponse.role;
+        this.authService.saveUserData(token, userId, role);
         console.log('User ID:', userId);
         this.router.navigate(['/products'])
       }

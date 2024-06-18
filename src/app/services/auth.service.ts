@@ -19,9 +19,10 @@ export class AuthService {
   login(loginRequest: LoginRequest): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.baseUrl}/login`, loginRequest);
   }
-  saveUserData(token: string, userId: number): void {
+  saveUserData(token: string, userId: number, role: string): void {
     localStorage.setItem('token', token);
     localStorage.setItem('userId', userId.toString());
+    localStorage.setItem('role', role);
   }
   getUserIdFromLocalStorage(): number | null {
     const userId = localStorage.getItem('userId');

@@ -1,10 +1,14 @@
 <strong>{{order.id}}</strong>
 <p>{{order.status}}</p>
+<!--  <select>-->
+<!--    <option *ngFor="let orderStatus of oderStatuses" [value]="orderStatus.status">-->
+<!--      {{orderStatus.status}}-->
+<!--    </option>-->
+<!--  </select>-->
+<p>{{order.payment.paymentMethod}}</p>
+<p>{{order.payment.status}}</p>
 <div *ngFor="let item of order.orderItems">
   <p>{{item.product.name}}</p>
 </div>
-<p>Here will be address!</p>
-<p>{{order.payment.paymentMethod}}</p>
-<p>{{order.payment.status}}</p>
 
 
