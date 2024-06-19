@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Cart} from "../../app.models";
+import {Cart, Order} from "../../app.models";
 import {CartService} from "../../services/cart.service";
 import {OrderService} from "../../services/order.service";
 import {Router} from "@angular/router";
@@ -14,6 +14,7 @@ import {Subscription} from "rxjs";
 export class CartComponent implements OnInit{
   cart!: Cart;
   cartUpdatesSubscription!: Subscription;
+  placedOrder!: Order;
   constructor(private cartService: CartService,
               private orderService: OrderService,
               private router: Router,
@@ -37,9 +38,11 @@ export class CartComponent implements OnInit{
   }
 
   placeOrder() {
-    this.orderService.placeOrder().subscribe((response) => {
-      console.log(response);
-      this.router.navigate(['/orders']);
+    this.orderService.placeOrder().subscribe((order) => {
+      console.log(order);
+      this.placedOrder = order;
+      localStorage.setItem('orderId', JSON.stringify(order.id));
+      this.router.navigate(['/payment']);
     });
   }
 

@@ -10,10 +10,13 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class OrderDetailComponent implements OnInit{
   order!: Order;
+  isAdmin: boolean = false;
+  orderStatus!: string;
   oderStatuses = orderStatuses;
   constructor(private orderService: OrderService, private activatedRoute: ActivatedRoute) {
   }
   ngOnInit(): void {
+    this.isAdmin = localStorage.getItem('role') === 'ADMIN';
     this.getOrder();
   }
   getOrder(){
@@ -24,8 +27,10 @@ export class OrderDetailComponent implements OnInit{
       })
     });
   }
-  updateOrderStatus(id: number){
-
+  updateOrderStatus(){
+    this.orderService.updateOrderStatus(this.orderStatus, this.order.id).subscribe((order) => {
+      this.order = order;
+    })
   }
 
   protected readonly orderStatuses = orderStatuses;

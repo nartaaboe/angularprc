@@ -28,18 +28,24 @@ export class OrderService {
     return this.http.get<Order>(`${this.BASE_URL}/orders/${userId}/${id}`, { headers });
   }
 
-  placeOrder(): Observable<any> {
+  placeOrder(): Observable<Order> {
     const userId = localStorage.getItem('userId');
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.post<any>(`${this.BASE_URL}/carts/${userId}`, {}, { headers });
+    return this.http.post<Order>(`${this.BASE_URL}/carts/${userId}`, {}, { headers });
   }
-
+  putPaymentDetails(paymentMethod: string): Observable<Order> {
+    const userId = localStorage.getItem('userId');
+    const id = localStorage.getItem('orderId');
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`).set('Content-Type', 'application/json');
+    return this.http.put<Order>(`${this.BASE_URL}/orders/${userId}/${id}/payment`, `"${paymentMethod}"`, { headers });
+  }
   updateOrderStatus(status: string, id: number): Observable<Order> {
     const userId = localStorage.getItem('userId');
     const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.put<Order>(`${this.BASE_URL}/${userId}/${id}/status`, status, { headers });
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`).set('Content-Type', 'application/json');
+    return this.http.put<Order>(`${this.BASE_URL}/orders/${userId}/${id}/status`, `"${status}"`, { headers });
   }
 
   deleteOrder(id: number, adminId: number, token: string): Observable<void> {

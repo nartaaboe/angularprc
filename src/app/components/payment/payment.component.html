@@ -1,7 +1,8 @@
 <form>
-  <select>
-    <option [ngModel]="paymentMethod" *ngFor="let item of paymentMethods">
+  <select [(ngModel)]="paymentMethod" name="paymentMethod">
+    <option *ngFor="let item of paymentMethods" [ngValue]="item.method">
       {{item.method}}
     </option>
   </select>
+  <button (click)="putPaymentDetails()">Order</button>
 </form>
