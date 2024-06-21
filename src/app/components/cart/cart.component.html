@@ -1,8 +1,12 @@
-<div *ngFor="let item of cart.cartItems">
-  <p>{{item.product.name}}</p>
-  <button (click)="increaseQuantity(item.id)">+</button>
-  <button (click)="decreaseQuantity(item.id)">-</button>
-  <p>{{item.quantity}}</p>
-  <button (click)="delete(item.id)">Delete</button>
+<div class="cart-items" *ngFor="let item of cart.cartItems">
+  <div class="cart-item">
+    <p class="product-name">{{ item.product.name }}</p>
+    <div class="quantity-controls">
+      <button class="control-button" (click)="increaseQuantity(item.id)">+</button>
+      <button class="control-button" (click)="decreaseQuantity(item.id)">-</button>
+      <p class="quantity">{{ item.quantity }}</p>
+    </div>
+    <button class="delete-button" (click)="delete(item.id)">Delete</button>
+  </div>
 </div>
-<button (click)="placeOrder()">Continue</button>
+<button class="continue-button" (click)="placeOrder()">Continue</button>

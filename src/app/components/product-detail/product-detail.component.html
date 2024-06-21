@@ -1,6 +1,13 @@
-<div>
-  <p>{{ product.name }}</p>
-  <p>{{product.quantity}}</p>
-  <button (click)="addToCart()">Add to Cart</button>
+<div class="product-container">
+  <div class="product-details">
+    <p class="product-name">{{ product.name }}</p>
+    <p class="product-description">{{ product.description }}</p>
+    <p class="product-quantity">Quantity: {{ product.quantity }}</p>
+    <p class="product-rating">Rating: {{ product.rating }}</p>
+    <button class="add-to-cart-button" (click)="addToCart()">Add to Cart</button>
+  </div>
+  <button class="view-cart-button" [routerLink]="['/cart']">View Cart</button>
+  <div class="product-reviews">
+    <p>{{ product.reviews }}</p>
+  </div>
 </div>
-<button [routerLink]="['/cart']">View Cart</button>

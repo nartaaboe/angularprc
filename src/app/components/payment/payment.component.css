@@ -1,0 +1,30 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+}
+.payment-form {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.payment-form select {
+  padding: 5px;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.payment-form button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.payment-form button:hover {
+  background-color: #0056b3;
+}
+

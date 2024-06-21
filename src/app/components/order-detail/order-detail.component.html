@@ -1,17 +1,19 @@
-<strong>{{order.id}}</strong>
-<p>{{order.status}}</p>
-<div *ngIf="isAdmin">
-  <select [(ngModel)]="orderStatus" name="orderStatus">
-    <option *ngFor="let orderStatus of oderStatuses" [value]="orderStatus.status">
-      {{orderStatus.status}}
-    </option>
-  </select>
-  <button (click)="updateOrderStatus()">Update</button>
+<div class="order-details">
+  <strong>{{ order.id }}</strong>
+  <p>Status: {{ order.status }}</p>
+  <div *ngIf="isAdmin" class="admin-actions">
+    <select [(ngModel)]="orderStatus" name="orderStatus">
+      <option *ngFor="let status of orderStatuses" [value]="status.status">{{status.status}}</option>
+    </select>
+    <button (click)="updateOrderStatus()">Update</button>
+  </div>
+  <p>Payment Method: {{ order.payment.paymentMethod }}</p>
+  <p>Payment Status: {{ order.payment.status }}</p>
+  <div class="order-items">
+    <p>Ordered Items:</p>
+    <div *ngFor="let item of order.orderItems">
+      <p>{{ item.product.name }}</p>
+    </div>
+  </div>
 </div>
-<p>{{order.payment.paymentMethod}}</p>
-<p>{{order.payment.status}}</p>
-<div *ngFor="let item of order.orderItems">
-  <p>{{item.product.name}}</p>
-</div>
-
 

@@ -1,0 +1,45 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+}
+.order-details {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.order-details p {
+  margin: 5px 0;
+}
+
+.admin-actions {
+  margin-top: 10px;
+}
+
+.admin-actions select {
+  padding: 5px;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.admin-actions button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.admin-actions button:hover {
+  background-color: #0056b3;
+}
+
+.order-items {
+  margin-top: 20px;
+}
+
+.order-items p {
+  margin-bottom: 5px;
+}

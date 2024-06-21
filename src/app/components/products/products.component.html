@@ -1,9 +1,11 @@
 <div class="container">
-  <div *ngFor="let product of products">
-    <img src="{{product.image}}"/>
-    <p>{{product.name}}</p>
-    <strong>{{product.price}}$</strong>
-    <p>{{product.rating}}</p>
-    <button [routerLink]="['/products', product.id]">view</button>
+  <div class="product-card" *ngFor="let product of products">
+    <img [src]="product.image" alt="{{product.name}}"/>
+    <div class="product-details">
+      <p class="product-name">{{product.name}}</p>
+      <strong class="product-price">{{product.price}}$</strong>
+      <p class="product-rating">Rating: {{product.rating}}</p>
+      <button [routerLink]="['/products', product.id]" class="view-button">View</button>
+    </div>
   </div>
 </div>

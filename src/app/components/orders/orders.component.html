@@ -1,4 +1,6 @@
-<div *ngFor="let order of orders">
-  <p>{{order.id}}</p>
-  <button [routerLink]="['/orders', order.id]">View</button>
+<div class="order-list" *ngFor="let order of orders">
+  <div class="order-item">
+    <p class="order-id">Order ID: {{ order.id }}</p>
+    <button class="view-button" [routerLink]="['/orders', order.id]">View</button>
+  </div>
 </div>
