@@ -24,6 +24,9 @@ export class AuthService {
     localStorage.setItem('userId', userId.toString());
     localStorage.setItem('role', role);
   }
+  isTokenValid(token: string): Observable<boolean> {
+    return this.http.post<boolean>(`${this.baseUrl}/isTokenValid`, token);
+  }
   getUserIdFromLocalStorage(): number | null {
     const userId = localStorage.getItem('userId');
     return userId ? +userId : null;

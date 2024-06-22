@@ -17,6 +17,8 @@ import { OrderDetailComponent } from './components/order-detail/order-detail.com
 import { HomeComponent } from './components/home/home.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { UsersComponent } from './components/users/users.component';
+import { CategoryComponent } from './components/category/category.component';
+import { TopBarComponent } from './components/top-bar/top-bar.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { UsersComponent } from './components/users/users.component';
     OrderDetailComponent,
     HomeComponent,
     PaymentComponent,
-    UsersComponent
+    UsersComponent,
+    CategoryComponent,
+    TopBarComponent
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,7 @@ import {AuthService} from "./services/auth.service";
 
 export interface Category{
   id: number;
+  image: string;
   name: string;
   products: Product[];
 }
@@ -148,3 +149,4 @@ export const paymentStatuses = [
     status: 'REFUNDED',
   },
 ]
+

@@ -1,0 +1,6 @@
+<div class="container">
+  <div *ngFor="let category of categories">
+    <img (click)="getProductsByCategory(category.id)" src="{{category.image}}"/>
+    <p (click)="getProductsByCategory(category.id)">{{category.name}}</p>
+  </div>
+</div>

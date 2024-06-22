@@ -13,9 +13,17 @@ export class ProductsComponent implements OnInit{
   constructor(private productService: ProductService) {
   }
   getProducts(){
-    this.productService.getProducts().subscribe((products) => {
-      this.products = products;
-    })
+    const categoryId = localStorage.getItem('categoryId')
+    if(categoryId){
+      this.productService.getProductsByCategory(Number(categoryId)).subscribe((products) => {
+        this.products = products;
+      })
+    }
+    else{
+      this.productService.getProducts().subscribe((products) => {
+        this.products = products;
+      })
+    }
   }
   ngOnInit(): void {
     this.getProducts();

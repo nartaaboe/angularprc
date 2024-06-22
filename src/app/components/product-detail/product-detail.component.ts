@@ -5,6 +5,7 @@ import {ActivatedRoute} from "@angular/router";
 import {CartService} from "../../services/cart.service";
 import {Subscription} from "rxjs";
 import {WebSocketService} from "../../services/websocket.service";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-product-detail',
@@ -17,7 +18,8 @@ export class ProductDetailComponent implements OnInit{
   constructor(private productService: ProductService,
               private activatedRoute: ActivatedRoute,
               private cartService: CartService,
-              private webSocketService: WebSocketService) {
+              private webSocketService: WebSocketService,
+              private authService: AuthService,) {
   }
   getProduct(): void {
     this.activatedRoute.paramMap.subscribe((params) => {
@@ -32,11 +34,17 @@ export class ProductDetailComponent implements OnInit{
     this.subscribeToProductUpdates();
   }
   addToCart() {
-    this.cartService.addToCart(this.product).subscribe(
-      response => {
-        console.log(response);
-      }
-    );
+    const token = localStorage.getItem("token");
+    if(token && this.authService.isTokenValid(token)){
+      this.cartService.addToCart(this.product).subscribe(
+        response => {
+          console.log(response);
+        }
+      );
+    }
+    else{
+      console.log("invalid token.")
+    }
   }
   subscribeToProductUpdates() {
     this.productUpdatesSubscription = this.webSocketService.getProductUpdates().subscribe((product) => {
