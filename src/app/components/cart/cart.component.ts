@@ -5,6 +5,7 @@ import {OrderService} from "../../services/order.service";
 import {Router} from "@angular/router";
 import {WebSocketService} from "../../services/websocket.service";
 import {Subscription} from "rxjs";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-cart',
@@ -18,7 +19,8 @@ export class CartComponent implements OnInit{
   constructor(private cartService: CartService,
               private orderService: OrderService,
               private router: Router,
-              private webSocketService: WebSocketService) {
+              private webSocketService: WebSocketService,
+              private authService: AuthService) {
   }
   ngOnInit(): void {
     this.getCartByUserId();
@@ -30,7 +32,6 @@ export class CartComponent implements OnInit{
       this.cartUpdatesSubscription.unsubscribe();
     }
   }
-
   getCartByUserId() {
     this.cartService.getCartByUserId().subscribe((cart) => {
       this.cart = cart;

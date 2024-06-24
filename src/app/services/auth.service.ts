@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import {AuthResponse, Cart, LoginRequest} from "../app.models";
+import {AuthResponse, Cart, LoginRequest, RegisterRequest} from "../app.models";
 import {response} from "express";
 
 @Injectable({
@@ -13,8 +13,8 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  register(user: any): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.baseUrl}/register`, user);
+  register(registerRequest: RegisterRequest): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/signup`, registerRequest);
   }
   login(loginRequest: LoginRequest): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.baseUrl}/login`, loginRequest);
@@ -27,14 +27,7 @@ export class AuthService {
   isTokenValid(token: string): Observable<boolean> {
     return this.http.post<boolean>(`${this.baseUrl}/isTokenValid`, token);
   }
-  getUserIdFromLocalStorage(): number | null {
-    const userId = localStorage.getItem('userId');
-    return userId ? +userId : null;
-  }
   logout(): void {
     localStorage.removeItem('token');
-  }
-  getToken(): string | null {
-    return localStorage.getItem('token');
   }
 }

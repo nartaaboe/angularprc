@@ -2,17 +2,18 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Cart, CartItem, Product} from "../app.models";
 import {Observable} from "rxjs";
+import {AuthService} from "./auth.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
   BASE_URL = 'http://localhost:8080';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   getCartByUserId(): Observable<Cart> {
-    const userId = localStorage.getItem('userId')
     const token = localStorage.getItem('token');
+    const userId = localStorage.getItem('userId');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<Cart>(`${this.BASE_URL}/carts/${userId}`, { headers });
   }

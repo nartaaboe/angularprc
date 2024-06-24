@@ -4,7 +4,6 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
-import { SignupComponent } from './components/signup/signup.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import {AuthService} from "./services/auth.service";
@@ -19,12 +18,12 @@ import { PaymentComponent } from './components/payment/payment.component';
 import { UsersComponent } from './components/users/users.component';
 import { CategoryComponent } from './components/category/category.component';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    SignupComponent,
     ProductsComponent,
     ProductDetailComponent,
     OrdersComponent,
@@ -34,7 +33,8 @@ import { TopBarComponent } from './components/top-bar/top-bar.component';
     PaymentComponent,
     UsersComponent,
     CategoryComponent,
-    TopBarComponent
+    TopBarComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

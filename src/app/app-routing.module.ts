@@ -8,16 +8,15 @@ import {CartComponent} from "./components/cart/cart.component";
 import {OrdersComponent} from "./components/orders/orders.component";
 import {OrderDetailComponent} from "./components/order-detail/order-detail.component";
 import {PaymentComponent} from "./components/payment/payment.component";
-import {HomeComponent} from "./components/home/home.component";
+import {RegisterComponent} from "./components/register/register.component";
 import {CategoryComponent} from "./components/category/category.component";
 
 const routes: Routes = [
-  {path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'categories', component: CategoryComponent},
+  {path: 'register', component: RegisterComponent},
   {path: 'products', component: ProductsComponent},
   {path: 'products/:id', component: ProductDetailComponent},
+  {path: 'category', component: CategoryComponent},
   {path: 'cart', component: CartComponent, canActivate: [authGuard]},
   {path: 'orders', component: OrdersComponent, canActivate: [authGuard]},
   {path: 'orders/:id', component: OrderDetailComponent, canActivate: [authGuard]},

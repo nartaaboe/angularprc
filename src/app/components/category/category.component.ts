@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Category, Product} from "../../app.models";
-import {ProductService} from "../../services/product.service";
-import {Router} from "@angular/router";
+import {Category} from "../../app.models";
+import {CategoryService} from "../../services/category.service";
 
 @Component({
   selector: 'app-category',
@@ -10,18 +9,15 @@ import {Router} from "@angular/router";
 })
 export class CategoryComponent implements OnInit{
   categories!: Category[];
-  constructor(private productService: ProductService, private router: Router) {
-  }
+  constructor(private categoryService: CategoryService) {}
   ngOnInit(): void {
     this.getCategories();
   }
-  getCategories() : void {
-    this.productService.getCategories().subscribe((categories) => {
-      this.categories = categories;
+  getCategories(){
+    console.log("Fetching...")
+    this.categoryService.getCategories().subscribe((data) => {
+      console.log("Received data.")
+      this.categories = data;
     })
-  }
-  getProductsByCategory(categoryId : number) : void {
-    localStorage.setItem('categoryId', categoryId.toString());
-    this.router.navigate(["/products"]);
   }
 }
